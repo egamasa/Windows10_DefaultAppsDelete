@@ -1,10 +1,16 @@
-# Windows 10 プリインストールアプリ削除PowerShellバッチ
+# Windows 10 プリインストールアプリ削除バッチ
 
 ## 使用方法
-PowerShellで DeleteApps.ps1 をそのまま実行するだけ
+`DeleteApps.ps1` を管理者権限で実行
 
 ## 削除対象アプリの選択
-削除しないアプリの行頭に「#」を付けてコメントアウトする
+削除しないアプリの行頭に `#` を付けてコメントアウトする
 
-`Get-AppxPackage Microsoft.MSPaint | Remove-AppxPackage` ←削除される  
-`# Get-AppxPackage *soundrec* | Remove-AppxPackage` ←削除されない
+``` powershell
+$Apps = @(
+    ...
+    # "Microsoft.MicrosoftStickyNotes",    # 削除されない
+    "Microsoft.MSPaint",                   # 削除される
+    ...
+)
+```
